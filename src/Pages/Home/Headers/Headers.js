@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Headers = () => {
+    const { logOut, user } = useContext(AuthContext);
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(err => console.error(err))
+    }
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">
@@ -24,7 +31,7 @@ const Headers = () => {
                         <li><Link>Item 3</Link></li>
                     </ul>
                 </div>
-                <Link className="btn btn-ghost normal-case text-xl">WILDLOVE MEMORIES</Link>
+                <Link to='/' className="btn btn-ghost normal-case text-xl">WILDLOVE MEMORIES</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
@@ -39,17 +46,34 @@ const Headers = () => {
                             <li><Link>Submenu 2</Link></li>
                         </ul>
                     </li>
-                    <li><Link>My Reviews</Link></li>
-                    <li><Link>Add Service</Link></li>
+                    {
+                        user?.email ?
+                            <>
+                                <li><Link>My Reviews</Link></li>
+                                <li><Link>Add Service</Link></li></>
+                            :
+                            <></>
+                    }
                 </ul>
             </div>
             <div className="navbar-end">
-                <button className="btn btn-outline btn-warning mx-3">
-                    <Link to='/login'>Log In</Link>
-                </button>
-                <button className="btn btn-outline btn-warning">
-                    <p>Sign Out</p>
-                </button>
+
+                {
+                    user?.email ?
+                        <>
+                            <p>{user?.displayName}</p>
+                            <img className='h-8 rounded-full' src={user?.photoURL} alt="" />
+                            <button onClick={handleLogOut} className="btn btn-outline btn-warning">
+                                <p>Sign Out</p>
+                            </button>
+                        </>
+                        :
+                        <button className="btn btn-outline btn-warning mx-3">
+                            <Link to='/login'>Log In</Link>
+                        </button>
+                }
+
+
             </div>
         </div>
     );
