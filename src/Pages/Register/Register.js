@@ -2,16 +2,15 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
-const Login = () => {
-    const { signIn } = useContext(AuthContext);
-
-    const handleSignIn = event => {
+const Register = () => {
+    const { createUser } = useContext(AuthContext);
+    const handleSignUp = event => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
 
-        signIn(email, password)
+        createUser(email, password)
             .then(result => {
                 const user = result.user;
                 console.log(user)
@@ -22,8 +21,15 @@ const Login = () => {
         <div className="min-h-screen bg-base-200">
             <div className="hero-content ">
                 <div className="card flex-shrink-0 w-1/2 shadow-2xl bg-base-100">
-                    <h1 className="text-5xl font-bold pt-5 my-5">Login now!</h1>
-                    <form onSubmit={handleSignIn} className="card-body">
+                    <h1 className="text-5xl font-bold pt-5 my-5">SignUp Please!</h1>
+                    <form onSubmit={handleSignUp} className="card-body">
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Write Your Name</span>
+                            </label>
+                            <input type="text"
+                                name='name' placeholder="Enter Your Name" className="input input-bordered" />
+                        </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Write Your Email</span>
@@ -33,17 +39,25 @@ const Login = () => {
                         </div>
                         <div className="form-control">
                             <label className="label">
+                                <span className="label-text">Write Your PhotoURL</span>
+                            </label>
+                            <input type="text"
+                                name='photoURL' placeholder="Enter Your photoURL" className="input input-bordered" />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
                                 <span className="label-text">Write Your Password</span>
                             </label>
                             <input type="password"
                                 name='password' placeholder="Enter Your Password" className="input input-bordered" />
                         </div>
+
                         <div className="form-control mt-6">
-                            <button className="btn btn-success">Login</button>
+                            <button className="btn btn-success">Register</button>
                         </div>
                     </form>
                     <label className="label">
-                        <p className='pt-8'>New in WildLove Memories ? <Link to='/register'>Please Register</Link></p>
+                        <p className='py-4 mx-auto'>If you have an account ? <Link to='/login'>Please Log In</Link></p>
                     </label>
                 </div>
             </div>
@@ -51,4 +65,4 @@ const Login = () => {
     )
 };
 
-export default Login;
+export default Register;
