@@ -1,14 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
-const Headers = () => {
+const Headers = ({ services }) => {
     const { logOut, user } = useContext(AuthContext);
     const handleLogOut = () => {
         logOut()
             .then(() => { })
             .catch(err => console.error(err))
     }
+
+
     return (
         <div className="navbar bg- py-5">
             <div className="navbar-start">
@@ -42,15 +44,18 @@ const Headers = () => {
                             <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
                         </Link>
                         <ul className="p-2">
-                            <li><Link>Submenu 1</Link></li>
-                            <li><Link>Submenu 2</Link></li>
+                            {
+                                services.map(service => <li ><Link className='btn btn-outline btn-success justify-start' to={`/service/${service._id}`}>{service.name}</Link></li>)
+                            }
+
+
                         </ul>
                     </li>
                     {
                         user?.email ?
                             <>
                                 <li><Link>My Reviews</Link></li>
-                                <li><Link>Add Service</Link></li></>
+                                <li><Link to='/addservice'>Add Service</Link></li></>
                             :
                             <></>
                     }
