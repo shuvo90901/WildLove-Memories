@@ -5,7 +5,6 @@ import Footer from '../Pages/Shared/Footer/Footer';
 
 const Main = () => {
     const services = useLoaderData();
-    console.log(services)
     return (
         <div>
             <Headers services={services}></Headers>
