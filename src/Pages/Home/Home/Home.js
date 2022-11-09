@@ -3,6 +3,7 @@ import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import camera from '../../../images/camera.jpg'
 import camera2 from '../../../images/camera2.jpg'
+import tiger from '../../../images/tiger.jpg'
 import './Home.css'
 
 const Home = () => {
@@ -29,18 +30,29 @@ const Home = () => {
                 </div>
 
             </div>
-            <div>
-                <div>
+            <div className='md:flex justify-center'>
 
+                <div>
+                    <img className='w-96 rounded-xl' src={tiger} alt="" />
                 </div>
-                <div>
+                <div className="card w-96 bg-stone-200 shadow-xl ">
+                    <div className="card-body">
+                        <h5 className="text-2xl">Appreciating Nature</h5>
+                        <hr className='bg-orange-300 h-1' />
+                        <h5 className="text-2xl">Mammal Photography</h5>
+                        <hr className='bg-orange-300 h-1' />
+                        <h5 className="text-2xl">Bird Photography</h5>
+                        <hr className='bg-orange-300 h-1' />
+                        <h5 className="text-2xl">Underwater Photography</h5>
+                        <hr className='bg-orange-300 h-1' />
+                        <h5 className="text-2xl">Getting Close to Wildlife</h5>
+                        <hr className='bg-orange-300 h-1' />
+                        <h5 className="text-2xl"> Finding Wildlife to Photograph</h5>
+                        <hr className='bg-orange-300 h-1' />
 
-                </div>
-                <div>
-
+                    </div>
                 </div>
             </div>
-
         </div>
     );
 };
