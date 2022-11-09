@@ -10,7 +10,7 @@ const Headers = () => {
             .catch(err => console.error(err))
     }
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg- py-5">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -31,11 +31,11 @@ const Headers = () => {
                         <li><Link>Item 3</Link></li>
                     </ul>
                 </div>
-                <Link to='/' className="btn btn-ghost normal-case text-xl">WILDLOVE MEMORIES</Link>
+                <Link to='/' className="btn btn-ghost normal-case text-2xl text-orange-500"><i>WILDLOVE MEMORIES</i></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
-                    <li><Link>Item 1</Link></li>
+                    <li><Link to='/services' className='btn btn-ghost'>Services</Link></li>
                     <li tabIndex={0}>
                         <Link>
                             Service
