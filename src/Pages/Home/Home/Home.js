@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
-import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import useTitle from '../../../contexts/hooks/useTitle';
 import camera from '../../../images/camera.jpg'
 import camera2 from '../../../images/camera2.jpg'
 import tiger from '../../../images/tiger.jpg'
@@ -8,8 +8,8 @@ import Service from '../../Shared/Service/Service';
 import './Home.css'
 
 const Home = () => {
-    const { user } = useContext(AuthContext)
     const [services, setServices] = useState([])
+    useTitle('Home')
     useEffect(() => {
         fetch('http://localhost:5000/serviceslimit')
             .then(res => res.json())
