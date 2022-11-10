@@ -2,7 +2,7 @@ import React from 'react';
 import { FaStar } from 'react-icons/fa';
 
 const Review = ({ review, handleDelete }) => {
-    const { name, discription, title, img, email, rating, _id, serviceId } = review;
+    const { name, discription, title, img, email, rating, _id } = review;
     console.log(review)
 
 

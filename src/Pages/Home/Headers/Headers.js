@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
@@ -59,6 +59,7 @@ const Headers = ({ services }) => {
                             :
                             <></>
                     }
+                    <li><Link to='/blog' className='btn btn-ghost'>Blog</Link></li>
                 </ul>
             </div>
             <div className="navbar-end">
