@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 
 const Register = () => {
     const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -71,6 +72,7 @@ const Register = () => {
                             <button className="btn btn-success">Register</button>
                         </div>
                     </form>
+                    <SocialLogin></SocialLogin>
                     <label className="label">
                         <p className='py-4 mx-auto'>If you have an account ? <Link to='/login'>Please Log In</Link></p>
                     </label>

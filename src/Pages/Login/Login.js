@@ -1,10 +1,14 @@
 import React, { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 
 const Login = () => {
     const { signIn, user } = useContext(AuthContext);
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from.pathname || '/';
 
     const handleSignIn = event => {
         event.preventDefault();
@@ -17,7 +21,7 @@ const Login = () => {
                 const user = result.user;
                 console.log(user)
                 form.reset();
-                navigate('/')
+                navigate(from, { replace: true })
             })
             .catch(err => console.error(err))
     }
@@ -45,8 +49,9 @@ const Login = () => {
                             <button className="btn btn-success">Login</button>
                         </div>
                     </form>
+                    <SocialLogin></SocialLogin>
                     <label className="label">
-                        <p className='pt-8'>New in WildLove Memories ? <Link to='/register'>Please Register</Link></p>
+                        <p className='py-4 mx-auto'>New in WildLove Memories ? <Link to='/register'>Please Register</Link></p>
                     </label>
                 </div>
             </div>
