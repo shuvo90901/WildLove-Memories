@@ -1,14 +1,20 @@
-import React, { useContext } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import camera from '../../../images/camera.jpg'
 import camera2 from '../../../images/camera2.jpg'
 import tiger from '../../../images/tiger.jpg'
+import Service from '../../Shared/Service/Service';
 import './Home.css'
 
 const Home = () => {
     const { user } = useContext(AuthContext)
-
+    const [services, setServices] = useState([])
+    useEffect(() => {
+        fetch('http://localhost:5000/serviceslimit')
+            .then(res => res.json())
+            .then(data => setServices(data))
+    }, [])
     return (
         <div>
             <div className='md:grid grid-cols-2 gap-10 items-center mx-5 my-16  mb-32'>
@@ -20,6 +26,7 @@ const Home = () => {
                     <img className='rounded-xl' src={camera} alt="" />
                 </div>
             </div>
+
             <div className='md:grid grid-cols-2 gap-10 items-center mx-5 my-48'>
                 <div className=''>
                     <img className='rounded-xl' src={camera2} alt="" />
@@ -30,7 +37,7 @@ const Home = () => {
                 </div>
 
             </div>
-            <div className='md:flex justify-center'>
+            <div className='md:flex justify-center my-32'>
 
                 <div>
                     <img className='w-96 rounded-xl' src={tiger} alt="" />
@@ -53,6 +60,12 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+            {
+                services.map(service => <Service
+                    key={service._id}
+                    service={service}></Service>)
+            }
+            <button className="btn btn-outline btn-success px-20"><Link to='/services'>See All</Link></button>
         </div>
     );
 };
