@@ -4,7 +4,9 @@ import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import logo from '../../../images/logo.jpg'
 
 const Headers = ({ services }) => {
+    // context
     const { logOut, user } = useContext(AuthContext);
+    // logout in this website
     const handleLogOut = () => {
         logOut()
             .then(() => { })
@@ -15,6 +17,7 @@ const Headers = ({ services }) => {
     return (
         <div className="navbar bg- py-5 font-semibold">
             <div className="navbar-start">
+                {/* responsived navbar part */}
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
@@ -43,6 +46,7 @@ const Headers = ({ services }) => {
                         <li><Link to='/blog'>Blog</Link></li>
                     </ul>
                 </div>
+                {/* website name and logo */}
                 <img className='md:w-20 w-12' src={logo} alt="" />
                 <Link to='/' className="btn btn-ghost normal-case text-2xl text-orange-500 p-0"><i>WILDLOVE MEMORIES</i></Link>
             </div>
@@ -71,6 +75,7 @@ const Headers = ({ services }) => {
                     <li><Link to='/blog'>Blog</Link></li>
                 </ul>
             </div>
+            {/* username and logout section */}
             <div className="navbar-end text-orange-800">
 
                 {

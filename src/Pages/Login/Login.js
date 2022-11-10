@@ -21,8 +21,26 @@ const Login = () => {
         signIn(email, password)
             .then(result => {
                 const user = result.user;
-                console.log(user)
                 form.reset();
+
+                const currentUser = {
+                    email: user.email
+                }
+                console.log(currentUser)
+                // jwt token 
+                fetch('https://wildlove-photography.vercel.app/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+
+                        localStorage.setItem('genius-token', data.token)
+                    })
                 navigate(from, { replace: true })
             })
             .catch(err => console.error(err))
@@ -51,6 +69,7 @@ const Login = () => {
                             <button className="btn btn-success">Login</button>
                         </div>
                     </form>
+                    {/* social login part */}
                     <SocialLogin></SocialLogin>
                     <label className="label">
                         <p className='py-4 mx-auto'>New in WildLove Memories ? <Link to='/register'>Please Register</Link></p>

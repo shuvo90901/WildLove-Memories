@@ -4,6 +4,7 @@ import useTitle from '../../contexts/hooks/useTitle';
 import Service from '../Shared/Service/Service';
 
 const Services = () => {
+    // add title hook
     useTitle('Services')
     const services = useLoaderData();
     return (

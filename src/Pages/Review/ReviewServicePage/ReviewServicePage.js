@@ -7,7 +7,7 @@ const ReviewServicePage = ({ id }) => {
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?email=${user?.email}`)
+        fetch(`https://wildlove-photography.vercel.app/reviews?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [user?.email])
@@ -15,7 +15,7 @@ const ReviewServicePage = ({ id }) => {
     const handleDelete = id => {
         const proceed = window.confirm('Delete?');
         if (proceed) {
-            fetch(`http://localhost:5000/reviews/${id}`, {
+            fetch(`https://wildlove-photography.vercel.app/reviews/${id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())

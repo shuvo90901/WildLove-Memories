@@ -74,6 +74,7 @@ const Register = () => {
                             <button className="btn btn-success">Register</button>
                         </div>
                     </form>
+                    {/* social login part */}
                     <SocialLogin></SocialLogin>
                     <label className="label">
                         <p className='py-4 mx-auto'>If you have an account ? <Link to='/login'>Please Log In</Link></p>

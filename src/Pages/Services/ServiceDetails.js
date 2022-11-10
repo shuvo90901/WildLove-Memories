@@ -7,6 +7,7 @@ import ReviewServicePage from '../Review/ReviewServicePage/ReviewServicePage';
 import useTitle from '../../contexts/hooks/useTitle';
 
 const ServiceDetails = () => {
+    // title adding hook
     useTitle('ServiceDetails')
     const { user } = useContext(AuthContext)
     const service = useLoaderData();
@@ -33,7 +34,7 @@ const ServiceDetails = () => {
         }
         console.log(review)
 
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://wildlove-photography.vercel.app/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -53,6 +54,7 @@ const ServiceDetails = () => {
     return (
         <div>
             <div className="card lg:card-side bg-base-100 shadow-xl m-10 rounded-2xl">
+                {/* full screen photo viewer */}
                 <PhotoProvider>
                     <PhotoView src={img}>
                         <img className='md:w-1/2 rounded-2xl' src={img} alt="Movie" />
@@ -71,6 +73,7 @@ const ServiceDetails = () => {
 
                 </div>
             </div >
+            {/* add review form  */}
             {
                 user?.email ?
                     <>
@@ -121,6 +124,8 @@ const ServiceDetails = () => {
                             </div>
                             <button className="btn  btn-success font-bold">Give Advise</button>
                         </form>
+
+                        {/* review show component */}
                         <ReviewServicePage
                             key={_id}
                             id={_id}></ReviewServicePage>

@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyDqQ_YM7gVW27WXfXZ3OF4H6EL916rZNQQ",
-    authDomain: "wildlove-memories.firebaseapp.com",
-    projectId: "wildlove-memories",
-    storageBucket: "wildlove-memories.appspot.com",
-    messagingSenderId: "414504393549",
-    appId: "1:414504393549:web:89dbe4505f189c42927504"
+    apiKey: process.env.REACT_APP_apiKey,
+    authDomain: process.env.REACT_APP_authDomain,
+    projectId: process.env.REACT_APP_projectId,
+    storageBucket: process.env.REACT_APP_storageBucket,
+    messagingSenderId: process.env.REACT_APP_messagingSenderId,
+    appId: process.env.REACT_APP_appId,
 };
 
 // Initialize Firebase

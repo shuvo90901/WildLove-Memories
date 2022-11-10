@@ -9,14 +9,17 @@ import './Home.css'
 
 const Home = () => {
     const [services, setServices] = useState([])
+    // add title hook
     useTitle('Home')
+    // load 3 service using fetch
     useEffect(() => {
-        fetch('http://localhost:5000/serviceslimit')
+        fetch('https://wildlove-photography.vercel.app/serviceslimit')
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])
     return (
         <div>
+            {/* 1st part */}
             <div className='md:grid grid-cols-2 gap-10 items-center mx-5 my-16  mb-32'>
                 <div>
                     <h3 className="text-4xl pb-16"><i>WildLife Photography</i></h3>
@@ -26,8 +29,9 @@ const Home = () => {
                     <img className='rounded-xl' src={camera} alt="" />
                 </div>
             </div>
-
+            {/* 2nd part */}
             <div className='md:grid grid-cols-2 gap-10 items-center mx-5 my-48'>
+
                 <div className=''>
                     <img className='rounded-xl' src={camera2} alt="" />
                 </div>
@@ -37,6 +41,7 @@ const Home = () => {
                 </div>
 
             </div>
+            {/* 3rd part */}
             <div className='md:flex justify-center my-32'>
 
                 <div>
@@ -60,6 +65,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+            {/* services container */}
             {
                 services.map(service => <Service
                     key={service._id}

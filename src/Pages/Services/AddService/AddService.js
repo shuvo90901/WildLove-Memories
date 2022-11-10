@@ -2,7 +2,9 @@ import React from 'react';
 import useTitle from '../../../contexts/hooks/useTitle';
 
 const AddService = () => {
+    // title adding hook
     useTitle('AddService')
+    // adding service handler
     const handleAddService = event => {
         event.preventDefault();
         const form = event.target;
@@ -22,7 +24,7 @@ const AddService = () => {
             discription
         }
 
-        fetch('http://localhost:5000/services', {
+        fetch('https://wildlove-photography.vercel.app/services', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
