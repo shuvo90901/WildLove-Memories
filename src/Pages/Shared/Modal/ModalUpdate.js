@@ -6,7 +6,7 @@ const ModalUpdate = ({ review }) => {
 
     const handleUpdateDiscription = event => {
         event.preventDefault();
-        fetch(`http://localhost:5000/reviews/${review._id}`, {
+        fetch(`https://wildlove-photography.vercel.app/reviews/${review._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

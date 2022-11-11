@@ -13,7 +13,7 @@ const Home = () => {
     useTitle('Home')
     // load 3 service using fetch
     useEffect(() => {
-        fetch('http://localhost:5000/serviceslimit')
+        fetch('https://wildlove-photography.vercel.app/serviceslimit')
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])

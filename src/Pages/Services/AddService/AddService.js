@@ -24,7 +24,7 @@ const AddService = () => {
             discription
         }
 
-        fetch('http://localhost:5000/services', {
+        fetch('https://wildlove-photography.vercel.app/services', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
