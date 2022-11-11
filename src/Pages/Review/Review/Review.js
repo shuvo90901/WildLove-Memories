@@ -3,8 +3,7 @@ import { FaStar } from 'react-icons/fa';
 import ModalUpdate from '../../Shared/Modal/ModalUpdate';
 
 const Review = ({ review, handleDelete }) => {
-    const { name, discription, title, img, email, rating, _id } = review;
-    console.log(review)
+    const { name, discription, title, img, email, rating, _id, date } = review;
 
 
 
@@ -22,12 +21,15 @@ const Review = ({ review, handleDelete }) => {
                     <h3 className="text-3xl font-semibold"><i>{title}</i></h3>
                 </div>
                 <div className='flex items-center'>
-                    <FaStar className='text-lime-500'></FaStar>
-                    <FaStar className='text-lime-500'></FaStar>
-                    <FaStar className='text-lime-500'></FaStar>
-                    <FaStar className='text-lime-500'></FaStar>
-                    <FaStar className='text-lime-500'></FaStar>
                     <p>{rating}</p>
+                    <FaStar className='text-lime-500'></FaStar>
+                    <FaStar className='text-lime-500'></FaStar>
+                    <FaStar className='text-lime-500'></FaStar>
+                    <FaStar className='text-lime-500'></FaStar>
+                    <FaStar className='text-lime-500'></FaStar>
+                    <div>
+                        <p>{date}</p>
+                    </div>
                 </div>
                 <div>
                     <p>{discription}</p>

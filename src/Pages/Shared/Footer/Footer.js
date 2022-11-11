@@ -4,6 +4,7 @@ const Footer = () => {
     return (
         <div className='mt-32'>
             <footer className="footer footer-center p-10 bg-orange-200 text-base-content rounded">
+                <h3 className='text-4xl font-bold text-orange-500'><i>WildLove Memories</i></h3>
                 <div className="grid grid-flow-col gap-4">
                     <a className="link link-hover">About us</a>
                     <a className="link link-hover">Contact</a>

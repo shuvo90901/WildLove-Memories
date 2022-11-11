@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import useTitle from '../../contexts/hooks/useTitle';
+import Loader from '../Shared/Loader/Loader';
 import Service from '../Shared/Service/Service';
 
 const Services = () => {
@@ -8,12 +9,19 @@ const Services = () => {
     useTitle('Services')
     const services = useLoaderData();
     return (
-        <div className=''>
+        <div>
             {
-                services.map(service => <Service
-                    key={service._id}
-                    service={service}
-                ></Service>)
+                services.length !== 0 ?
+                    <div className=''>
+                        {
+                            services.map(service => <Service
+                                key={service._id}
+                                service={service}
+                            ></Service>)
+                        }
+                    </div>
+                    :
+                    <Loader></Loader>
             }
         </div>
     );

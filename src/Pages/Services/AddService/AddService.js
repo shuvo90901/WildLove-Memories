@@ -24,10 +24,11 @@ const AddService = () => {
             discription
         }
 
-        fetch('https://wildlove-photography.vercel.app/services', {
+        fetch('http://localhost:5000/services', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('genius-token')}`
             },
             body: JSON.stringify(service)
         })
@@ -41,9 +42,9 @@ const AddService = () => {
             })
     }
     return (
-        <div className="py-20 min-h-screen bg-base-200">
+        <div className="py-20 min-h-screen bg-base-200 ">
             <div className="hero-content flex-col lg:flex-row-reverse">
-                <div className="card flex-shrink-0 w-3/4  shadow-2xl bg-base-100">
+                <div className="card flex-shrink-0 w-3/4  shadow-2xl bg-base-100 font-bold">
                     <form onSubmit={handleAddService} className="card-body">
                         <div className="form-control">
                             <label className="label">

@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { setAuthToken } from '../../api/auth';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import useTitle from '../../contexts/hooks/useTitle';
 import SocialLogin from '../Shared/SocialLogin/SocialLogin';
@@ -20,6 +21,7 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user)
+                setAuthToken(user);
                 form.reset();
                 handleProfileUpdate(name, photoURL)
             })

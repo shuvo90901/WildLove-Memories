@@ -4,7 +4,7 @@ import useTitle from '../../contexts/hooks/useTitle';
 const Blog = () => {
     useTitle('Blog')
     return (
-        <div>
+        <div className='text-red-700'>
             {/* first question */}
             <div className="card md:mx-32 bg-red-300 shadow-xl justify-start my-12">
                 <div className="card-body">

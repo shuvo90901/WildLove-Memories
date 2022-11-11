@@ -5,6 +5,7 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import 'react-photo-view/dist/react-photo-view.css';
 import ReviewServicePage from '../Review/ReviewServicePage/ReviewServicePage';
 import useTitle from '../../contexts/hooks/useTitle';
+import { FaStar } from 'react-icons/fa';
 
 const ServiceDetails = () => {
     // title adding hook
@@ -23,6 +24,7 @@ const ServiceDetails = () => {
         const rating = form.rating.value;
         const discription = form.discription.value;
         const serviceId = service._id;
+        const date = new Date();
         const review = {
             title,
             email,
@@ -30,14 +32,16 @@ const ServiceDetails = () => {
             img,
             rating,
             discription,
-            serviceId
+            serviceId,
+            date
         }
         console.log(review)
 
-        fetch('https://wildlove-photography.vercel.app/reviews', {
+        fetch('http://localhost:5000/reviews', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('genius-token')}`
             },
             body: JSON.stringify(review)
         })
@@ -65,9 +69,16 @@ const ServiceDetails = () => {
                 <div className="card-body text-start">
                     <h2 className="card-title text-4xl pb-6"><i>{name}</i></h2>
                     <p className='text-xl'>{discription}</p>
-                    <div className='flex justify-evenly items-center'>
-                        <p>{price}</p>
-                        <p>{rating}</p>
+                    <div className='flex justify-evenly items-center text-orange-500 font-semibold'>
+                        <p>Price : $ {price}</p>
+                        <p className='flex items-center'>
+                            {rating}
+                            <FaStar></FaStar>
+                            <FaStar></FaStar>
+                            <FaStar></FaStar>
+                            <FaStar></FaStar>
+                            <FaStar></FaStar>
+                        </p>
 
                     </div>
 

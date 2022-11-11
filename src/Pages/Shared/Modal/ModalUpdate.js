@@ -1,12 +1,34 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import React, { useState } from 'react';
 
 const ModalUpdate = ({ review }) => {
-    console.log(review)
-    const { user } = useContext(AuthContext)
+    const [discription, setDiscription] = useState(review.discription)
+
+
+    const handleUpdateDiscription = event => {
+        event.preventDefault();
+        fetch(`http://localhost:5000/reviews/${review._id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(discription)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    alert('discription updated');
+                    console.log(data)
+                    event.target.reset()
+                }
+            })
+    }
+
     const handleInputChange = event => {
-        const rating = event.target.rating.value;
-        console.log(rating)
+        const field = event.target.name;
+        const value = event.target.value;
+        const newDiscription = {}
+        newDiscription[field] = value;
+        setDiscription(newDiscription)
     }
     return (
         <div>
@@ -17,50 +39,11 @@ const ModalUpdate = ({ review }) => {
             <input type="checkbox" id="my-modal-6" className="modal-toggle" />
             <div className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
-                    <form className="card bg-orange-200 w-3/4 mx-auto  shadow-xl">
-                        <div className="card-body">
-
-                            <div className='md:grid grid-cols-2 gap-4'>
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text">Your Email</span>
-                                    </label>
-                                    <input type="email"
-                                        defaultValue={user?.email}
-                                        readOnly
-                                        name='email' placeholder="Enter Your Email" className="input input-bordered" required />
-                                </div>
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text">Your Name</span>
-                                    </label>
-                                    <input type="text"
-                                        defaultValue={user?.displayName}
-                                        readOnly
-                                        name='name' placeholder="Enter Your Name" className="input input-bordered" required />
-                                </div>
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text">Your PhotoURL</span>
-                                    </label>
-                                    <input type="text"
-                                        defaultValue={user?.photoURL}
-                                        readOnly
-                                        name='photoURL' placeholder="Enter Your PhotoURL" className="input input-bordered" required />
-                                </div>
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text">Give Rating</span>
-                                    </label>
-                                    <input onChange={handleInputChange} type="text"
-                                        name='rating' placeholder="Please Give Rating" className="input input-bordered" required />
-                                </div>
-                            </div>
-                            <label className="label  mt-3">
-                                <span className="label-text">Please Share Your Review</span>
-                            </label>
-                            <textarea onChange={handleInputChange} name='discription' className="textarea textarea-bordered h-32" placeholder="Write Your Review Here"></textarea>
-                        </div>
+                    <form onSubmit={handleUpdateDiscription} className="card bg-orange-200 w-3/4 mx-auto  shadow-xl">
+                        <label className="label  mt-3">
+                            <span className="label-text">Please Share Your Review</span>
+                        </label>
+                        <textarea onChange={handleInputChange} name='discription' className="textarea textarea-bordered h-32" placeholder="Write Your Review Here"></textarea>
                         <button className="btn  btn-success font-bold">Give Advise</button>
                     </form>
                     <div className="modal-action">

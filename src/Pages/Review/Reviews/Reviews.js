@@ -6,25 +6,33 @@ import Review from '../Review/Review';
 
 const Reviews = () => {
     useTitle('Reviews')
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     const [reviews, setReviews] = useState([]);
 
     // fetch review using email query
     useEffect(() => {
-        fetch(`https://wildlove-photography.vercel.app/reviews?email=${user?.email}`, {
+        fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('genius-token')}`
             }
         })
-            .then(res => res.json())
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    return logOut();
+                }
+                return res.json()
+            })
             .then(data => setReviews(data))
-    }, [user?.email])
+    }, [user?.email, logOut])
 
     const handleDelete = id => {
         const proceed = window.confirm('Delete?');
         if (proceed) {
-            fetch(`https://wildlove-photography.vercel.app/reviews/${id}`, {
+            fetch(`http://localhost:5000/reviews/${id}`, {
                 method: 'DELETE',
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('genius-token')}`
+                }
             })
                 .then(res => res.json())
                 .then(data => {

@@ -28,7 +28,7 @@ const Login = () => {
                 }
                 console.log(currentUser)
                 // jwt token 
-                fetch('https://wildlove-photography.vercel.app/jwt', {
+                fetch('http://localhost:5000/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -40,8 +40,8 @@ const Login = () => {
                         console.log(data)
 
                         localStorage.setItem('genius-token', data.token)
+                        navigate(from, { replace: true })
                     })
-                navigate(from, { replace: true })
             })
             .catch(err => console.error(err))
     }
